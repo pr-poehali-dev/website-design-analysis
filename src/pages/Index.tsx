@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -96,6 +97,7 @@ const mockAuctions: Auction[] = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('catalog');
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
@@ -263,7 +265,11 @@ const Index = () => {
                         </div>
                       </div>
 
-                      <Button className="w-full gap-2" size="lg">
+                      <Button 
+                        className="w-full gap-2" 
+                        size="lg"
+                        onClick={() => navigate(`/auction/${auction.id}`)}
+                      >
                         <Icon name="Eye" size={18} />
                         Подробнее
                       </Button>
